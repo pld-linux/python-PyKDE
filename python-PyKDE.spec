@@ -7,27 +7,22 @@
 %define vendor_rel 2
 %define fn_ver %{vendor_ver}-%{vendor_rel}
 
-#%%define         snap 20030413
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-#Version:	3.5.0.snap%{snap}
 Version:	%{vendor_ver}.%{vendor_rel}
 Release:	2
 License:	GPL
 Group:		Libraries/Python
-# Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
 Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
 # Source0-md5:	7252731d6933ddc89ba579738bd903aa
 Patch0:         %{name}-setShared_args_num.patch
-
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	python-PyQt-devel >= 3.7
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= %{vendor_ver}
-
 %pyrequires_eq	python
 Requires:	OpenGL
 Requires:	python-PyQt >= 3.7
@@ -60,7 +55,6 @@ metody w wymienionych bibliotekach.
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 
 cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
-# /tmp/python-PyKDE-3.5.2-root-matkor/usr/lib/python2.2/site-packages/libqtcmodule.so
 
 DESTDIR=$RPM_BUILD_ROOT 
 python build.py \
@@ -68,10 +62,6 @@ python build.py \
         -d $RPM_BUILD_ROOT%{py_sitedir} \
         -t %{_includedir} \
 	-c+ # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
-
-#rm -rf $RPM_BUILD_ROOT
-#export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
-#%%{__make} # FIXME make here messes in $RPM_BUILD_ROOT
 
 %install
 rm -rf $RPM_BUILD_ROOT
