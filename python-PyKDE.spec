@@ -11,7 +11,7 @@ Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 Version:        %{vendor_ver}.%{vendor_rel}
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
@@ -22,6 +22,7 @@ Patch0:         %{name}-p2.3-PyQT3.8fix.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
 BuildRequires:	python-devel >= 2.2.2
+BuildRequires:	python-static
 BuildRequires:	python-PyQt-devel >= 3.8
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= %{vendor_ver}
@@ -58,7 +59,7 @@ python build.py \
         -k %{_prefix} \
         -i %{_includedir}/qt \
         -d $RPM_BUILD_ROOT%{py_sitedir} \
-        -t %{py_libdir} \
+        -t %{_libdir} #%{py_libdir} \
         -s %{py_sitedir} \
 	-c- # NOTE c+ makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
             #      Also it may couse failure of linking of huge object files on some archs.
