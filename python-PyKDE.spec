@@ -20,6 +20,7 @@ Source0:	http://beauty.ant.gliwice.pl/bugs/%{module}-%{fn_ver}.tar.gz
 # Source0-md5:	eb2312e1c6d68f90cb127b2d4c9879c3
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
+BuildRequires:	perl-base
 BuildRequires:	python-devel 
 BuildRequires:	python-PyQt-devel >= 3.11
 BuildRequires:	rpm-pythonprov
@@ -49,6 +50,11 @@ metody w wymienionych bibliotekach.
 
 %prep
 %setup -q -n %{module}-%{fn_ver}
+
+# fix copy-pasto from PyQt
+# (-d/-v args were not used, pykdemoddir/pykdesipdir couldn't be overridden)
+%{__perl} -pi -e 's/opt_pyqtmoddir/opt_pykdemoddir/;s/opt_pyqtsipdir/opt_pykdesipdir/' \
+	configure.py
 
 %build
 python configure.py \
