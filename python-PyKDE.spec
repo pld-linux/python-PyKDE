@@ -3,7 +3,7 @@
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
-%define vendor_ver 3.5
+%define vendor_ver 3.7
 %define vendor_rel 2
 %define fn_ver %{vendor_ver}-%{vendor_rel}
 
@@ -13,21 +13,25 @@ Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 #Version:	3.5.0.snap%{snap}
 Version:	%{vendor_ver}.%{vendor_rel}
-Release:	2
+Release:	1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
-# Source0-md5:	b80d43ab8c6762f985fef274791d174d
+# Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
+Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
+# Source0-md5:	7252731d6933ddc89ba579738bd903aa
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
-BuildRequires:	python-PyQt-devel >= 3.5-3
 BuildRequires:	python-devel >= 2.2.2
+BuildRequires:	python-PyQt-devel >= 3.7
 BuildRequires:	rpm-pythonprov
+BuildRequires:	sip >= %{vendor_ver}
+
 %pyrequires_eq	python
 Requires:	OpenGL
-Requires:	python-PyQt >= 3.5-3
+Requires:	python-PyQt >= 3.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define _prefix /usr/X11R6
 %define          _sipfilesdir         /usr/share/sip
 
 %description
@@ -42,7 +46,7 @@ and methods in these libraries.
 PyKDE jest zbiorem dowi±zañ do KDE dla jêzyka Python. Dowi±zania s±
 zaimplementowane jako zbiór modu³ów Pythona: dcop, kdecore, kdesu,
 kdefix (KDE 3.0 i pó¼niejsze), kdeui, kio, kfile, kparts, khtml, kjs,
-kspell i kdeprint (KDE 2.2.0 i pó¼niejsze). Modu³y odpowiadaj±
+kspell, i kdeprint (KDE 2.2.0 i pó¼niejsze). Modu³y odpowiadaj±
 bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
 metody w wymienionych bibliotekach.
 
@@ -51,22 +55,24 @@ metody w wymienionych bibliotekach.
 
 %build
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
-install  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}
+
+# cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
 # /tmp/python-PyKDE-3.5.2-root-matkor/usr/lib/python2.2/site-packages/libqtcmodule.so
 
-DESTDIR=$RPM_BUILD_ROOT python build.py \
+DESTDIR=$RPM_BUILD_ROOT 
+python build.py \
         -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
         -d $RPM_BUILD_ROOT%{py_sitedir} \
         -t %{_includedir} \
-	-c # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
+	-c+ # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
 
 #rm -rf $RPM_BUILD_ROOT
-#export LIBRARY_PATH=$RPM_BUILD_ROOT%{py_sitedir}
+#export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
 #%%{__make} # FIXME make here messes in $RPM_BUILD_ROOT
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export LIBRARY_PATH=$RPM_BUILD_ROOT%{py_sitedir}
+export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
 
 %{__make} install
 
@@ -79,4 +85,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %{py_sitedir}/*.py[co]
-%attr(755,root,root) %{py_sitedir}/lib*.so*
+%{py_sitedir}/lib*.so*
