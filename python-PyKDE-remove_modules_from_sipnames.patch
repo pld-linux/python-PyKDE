@@ -1,0 +1,75 @@
+diff -urN PyKDE-3.5-2.orig/sip/kdatetbl.sip PyKDE-3.5-2/sip/kdatetbl.sip
+--- PyKDE-3.5-2.orig/sip/kdatetbl.sip	Tue Apr 15 23:26:21 2003
++++ PyKDE-3.5-2/sip/kdatetbl.sip	Tue Apr 15 23:55:18 2003
+@@ -236,7 +236,7 @@
+             goto releaseLock;
+         }
+ 
+-        sipBadVirtualResultType(sipName_kdeui_KDateValidator,sipName_kdeui_validate);
++        sipBadVirtualResultType(sipName_KDateValidator,sipName_validate);
+     }
+ 
+ reperr:
+diff -urN PyKDE-3.5-2.orig/sip/klistview.sip PyKDE-3.5-2/sip/klistview.sip
+--- PyKDE-3.5-2.orig/sip/klistview.sip	Tue Apr 15 23:26:21 2003
++++ PyKDE-3.5-2/sip/klistview.sip	Tue Apr 15 23:55:51 2003
+@@ -248,7 +248,7 @@
+ 
+         if (rc) goto releaseLock;
+ 
+-        sipBadVirtualResultType(sipName_kdeui_KListView,sipName_kdeui_findDrop);
++        sipBadVirtualResultType(sipName_KListView,sipName_findDrop);
+     }
+ 
+ reperr:
+diff -urN PyKDE-3.5-2.orig/sip/knumvalidator.sip PyKDE-3.5-2/sip/knumvalidator.sip
+--- PyKDE-3.5-2.orig/sip/knumvalidator.sip	Tue Apr 15 23:26:21 2003
++++ PyKDE-3.5-2/sip/knumvalidator.sip	Tue Apr 15 23:56:56 2003
+@@ -83,7 +83,7 @@
+             goto releaseLock;
+         }
+ 
+-        sipBadVirtualResultType(sipName_kdeui_KIntValidator,sipName_kdeui_validate);
++        sipBadVirtualResultType(sipName_KIntValidator,sipName_validate);
+     }
+ 
+ reperr:
+@@ -169,7 +169,7 @@
+             goto releaseLock;
+         }
+ 
+-        sipBadVirtualResultType(sipName_kdeui_KFloatValidator,sipName_kdeui_validate);
++        sipBadVirtualResultType(sipName_KFloatValidator,sipName_validate);
+     }
+ 
+ reperr:
+@@ -260,7 +260,7 @@
+             goto releaseLock;
+         }
+ 
+-        sipBadVirtualResultType(sipName_kdeui_KDoubleValidator,sipName_kdeui_validate);
++        sipBadVirtualResultType(sipName_KDoubleValidator,sipName_validate);
+     }
+ 
+ reperr:
+diff -urN PyKDE-3.5-2.orig/sip/kstringvalidator.sip PyKDE-3.5-2/sip/kstringvalidator.sip
+--- PyKDE-3.5-2.orig/sip/kstringvalidator.sip	Tue Apr 15 23:26:21 2003
++++ PyKDE-3.5-2/sip/kstringvalidator.sip	Tue Apr 15 23:57:34 2003
+@@ -87,7 +87,7 @@
+             goto releaseLock;
+         }
+ 
+-        sipBadVirtualResultType(sipName_kdeui_KStringListValidator,sipName_kdeui_validate);
++        sipBadVirtualResultType(sipName_KStringListValidator,sipName_validate);
+     }
+ 
+ reperr:
+@@ -178,7 +178,7 @@
+             goto releaseLock;
+         }
+ 
+-        sipBadVirtualResultType(sipName_kdeui_KMimeTypeValidator,sipName_kdeui_validate);
++        sipBadVirtualResultType(sipName_KMimeTypeValidator,sipName_validate);
+     }
+ 
+ reperr:
