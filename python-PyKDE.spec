@@ -18,11 +18,9 @@ Group:		Libraries/Python
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{version}.tar.gz
 Source0:	http://beauty.ant.gliwice.pl/bugs/%{module}-%{fn_ver}.tar.gz
 # Source0-md5:	eb2312e1c6d68f90cb127b2d4c9879c3
-
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	python-devel 
-BuildRequires:	python-static
 BuildRequires:	python-PyQt-devel >= 3.11
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip = %{vendor_ver}
@@ -51,21 +49,25 @@ metody w wymienionych bibliotekach.
 
 %prep
 %setup -q -n %{module}-%{fn_ver}
-#%%patch0 -p1
 
 %build
-KDEDIR=%{_prefix}
 python configure.py \
         -d %{py_sitedir} \
+	-n %{_libdir} \
 	-v %{_sipdir} \
-	-c -j 3 # 
-        # -t %{py_libdir}/config \
+	-c -j 3
 
-%{__make} 
+%{__make} \
+	CXX="%{__cxx}" \
+	CXXFLAGS="%{rpmcflags} -fPIC -pipe -w -D_REENTRANT" \
+	LINK="%{__cxx}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__make} DESTDIR=$RPM_BUILD_ROOT install
+
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 
