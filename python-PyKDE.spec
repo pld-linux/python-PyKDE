@@ -9,7 +9,7 @@ Name:		python-%{module}
 # Version:	%{vendor_ver}.%{vendor_rel}
 Version:	%{vendor_ver}
 #Release:	0.%{vendor_rel}.1
-Release:	3
+Release:	4
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
@@ -83,5 +83,5 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %{py_sitedir}/*.py[co]
-%{py_sitedir}/lib*.so*
+%{py_sitedir}/*.so
 #%%attr(755,root,root)
