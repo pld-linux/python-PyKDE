@@ -3,29 +3,30 @@
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
 %define vendor_ver 3.8
-#%%define vendor_rel 
-%define fn_ver %{vendor_ver}-%{vendor_rel}
+%define vendor_rel 0
+#%%define fn_ver %{vendor_ver}.%{vendor_rel}
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-Version:	%{vendor_ver}
-Release:	0.rc2-0.1
+Version:        %{vendor_ver}.%{vendor_rel}
+Release:	0.1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}rc2.tar.gz
-# Source0-md5:	4fe0fefc3e923e26c8e87b301754133b
+# Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}rc2.tar.gz
+Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{version}.tar.gz
+# Source0-md5:	c917602653ff79b318734d51aa875fb5
 Patch0:         %{name}-p2.3-PyQT3.8fix.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
 BuildRequires:	python-devel >= 2.2.2
-BuildRequires:	python-PyQt-devel >= 3.7
+BuildRequires:	python-PyQt-devel >= 3.8
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= %{vendor_ver}
 %pyrequires_eq	python
 Requires:	OpenGL
-Requires:	python-PyQt >= 3.7
+Requires:	python-PyQt >= %{vendor_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define          _sipfilesdir         /usr/share/sip
@@ -47,7 +48,7 @@ bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
 metody w wymienionych bibliotekach.
 
 %prep
-%setup -q -n %{module}-%{fn_ver}
+%setup -q -n %{module}-%{version}
 
 %build
 KDEDIR=%{_prefix}
@@ -55,11 +56,11 @@ python build.py \
         -q %{_prefix} \
         -k %{_prefix} \
         -i %{_includedir}/qt \
-        -l qt-mt \
         -d $RPM_BUILD_ROOT%{py_sitedir} \
         -t %{py_libdir} \
         -s %{py_sitedir} \
-	-c+ # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
+	-c- # NOTE c+ makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
+            #      Also it may couse failure of linking of huge object files on some archs.
 %{__make} 
 
 %install
