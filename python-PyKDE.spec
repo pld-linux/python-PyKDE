@@ -1,5 +1,5 @@
 %define		module		PyKDE
-%define		vendor_ver	3.11.1
+%define		vendor_ver	3.11.3
 %define		vendor_rel	%{nil}
 %define		fn_ver		%{vendor_ver}%{vendor_rel}
 
@@ -16,7 +16,8 @@ Group:		Libraries/Python
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}rc2.tar.gz
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{version}.tar.gz
 Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
-# Source0-md5:	ad689ed02054ea03b7f4d2d0cd84e6b6
+# Source0-md5:	7e0b2df3d5f9718833238501c3a21e96
+# Source0-size:	1254776
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	perl-base
