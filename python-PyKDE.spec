@@ -2,21 +2,21 @@
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
-%define vendor_ver 3.7
-%define vendor_rel 4
+%define vendor_ver 3.8
+#%%define vendor_rel 
 %define fn_ver %{vendor_ver}-%{vendor_rel}
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-Version:	%{vendor_ver}.%{vendor_rel}
-Release:	1
+Version:	%{vendor_ver}
+Release:	0.rc2-0.1
 License:	GPL
 Group:		Libraries/Python
-# Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
-Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
-# Source0-md5:	871740c95c572ade9d0299ef0830656a
-Patch0:         %{name}-setShared_args_num.patch
+Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}rc2.tar.gz
+# Source0-md5:	4fe0fefc3e923e26c8e87b301754133b
+# Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}rc2.tar.gz
+Patch0:         %{name}-p2.3-PyQT3.8fix.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
 BuildRequires:	python-devel >= 2.2.2
