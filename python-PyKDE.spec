@@ -10,7 +10,7 @@ Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 # Version:        %{vendor_ver}.%{vendor_rel}
 Version:        %{vendor_ver}
-Release:	0.%{vendor_rel}.1
+Release:	0.%{vendor_rel}.2
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
