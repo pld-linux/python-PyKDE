@@ -1,5 +1,7 @@
 #TODO:
-# - fix building
+# - fix linking
+# - fill files section
+
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
@@ -13,16 +15,15 @@ Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 #Version:	3.5.0.snap%{snap}
 Version:	%{vendor_ver}.%{vendor_rel}
-Release:	0.1
+Release:	0.7
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
-Patch0: 	%{name}-remove_modules_from_sipnames.patch
+# Patch0: 	%{name}-remove_modules_from_sipnames.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	python-PyQt-devel >= 3.5.0.snap20030405
-BuildRequires:	qt-devel >= 3.1.2
+BuildRequires:	python-PyQt-devel = 3.5
 BuildRequires:	kdelibs-devel >= 3.1.1a
 %pyrequires_eq	python
 Requires:	OpenGL
@@ -39,7 +40,7 @@ TODO
 
 %prep
 %setup -q -n %{module}-%{fn_ver}
-%patch0 -p1
+#%%patch0 -p1
 
 %build
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
@@ -47,12 +48,12 @@ cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
 # /tmp/python-PyKDE-3.5.2-root-matkor/usr/lib/python2.2/site-packages/libqtcmodule.so
 
 python build.py \
-        -c -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
+        -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
         -d $RPM_BUILD_ROOT%{py_sitedir} \
         -t %{_includedir}
-
+         
         # -d %{py_sitedir} \
-
+	# -c # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
 %install
 
 rm -rf $RPM_BUILD_ROOT
