@@ -1,13 +1,13 @@
 %include	/usr/lib/rpm/macros.python
-%define		module	PyKDE
-%define vendor_ver 3.11
-%define vendor_rel alpha6
-%define fn_ver %{vendor_ver}%{vendor_rel}
+%define		module		PyKDE
+%define		vendor_ver	3.11
+%define		vendor_rel	alpha6
+%define		fn_ver		%{vendor_ver}%{vendor_rel}
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-# Version:        %{vendor_ver}.%{vendor_rel}
+# Version:	%{vendor_ver}.%{vendor_rel}
 Version:        %{vendor_ver}
 Release:	0.%{vendor_rel}.1
 License:	GPL
