@@ -23,7 +23,6 @@ BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	perl-base
 BuildRequires:	python-devel 
 BuildRequires:	python-PyQt-devel >= 3.13-2
-BuildRequires:	rpm-pythonprov
 #BuildRequires:	sip >= %{vendor_ver}
 %pyrequires_eq	python
 Requires:	OpenGL
