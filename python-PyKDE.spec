@@ -4,18 +4,19 @@
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
 %define vendor_ver 3.7
-%define vendor_rel 2
+%define vendor_rel 4
 %define fn_ver %{vendor_ver}-%{vendor_rel}
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 Version:	%{vendor_ver}.%{vendor_rel}
-Release:	2
+Release:	0.1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
-# Source0-md5:	7252731d6933ddc89ba579738bd903aa
+# Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
+Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
+# Source0-md5:	871740c95c572ade9d0299ef0830656a
 Patch0:         %{name}-setShared_args_num.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
@@ -49,19 +50,24 @@ metody w wymienionych bibliotekach.
 
 %prep
 %setup -q -n %{module}-%{fn_ver}
-%patch0 -p1
+#%%patch0 -p1
 
 %build
-install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
-
-cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
-
-DESTDIR=$RPM_BUILD_ROOT 
+# install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
+# cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
+# DESTDIR=$RPM_BUILD_ROOT 
+KDEDIR=%{_prefix}
 python build.py \
-        -q %{_prefix} -i %{_includedir}/qt -l qt-mt \
+        -q %{_prefix} \
+        -k %{_prefix} \
+        -i %{_includedir}/qt \
+        -l qt-mt \
         -d $RPM_BUILD_ROOT%{py_sitedir} \
-        -t %{_includedir} \
+        -t %{py_libdir} \
+        -s %{py_sitedir} \
 	-c+ # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
+export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
+%{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
