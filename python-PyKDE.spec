@@ -9,7 +9,7 @@ Name:		python-%{module}
 # Version:	%{vendor_ver}.%{vendor_rel}
 Version:	%{vendor_ver}
 #Release:	0.%{vendor_rel}.1
-Release:	4
+Release:	5
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
@@ -55,6 +55,10 @@ metody w wymienionych bibliotekach.
 # (-d/-v args were not used, pykdemoddir/pykdesipdir couldn't be overridden)
 %{__perl} -pi -e 's/opt_pyqtmoddir/opt_pykdemoddir/;s/opt_pyqtsipdir/opt_pykdesipdir/' \
 	configure.py
+
+for i in $(find -name \*kde330\*);do
+	cp -a $i $(echo $i|sed s/330/332/)
+done
 
 %build
 python configure.py \
