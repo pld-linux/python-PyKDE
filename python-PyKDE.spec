@@ -42,7 +42,7 @@ and methods in these libraries.
 PyKDE jest zbiorem dowi±zañ do KDE dla jêzyka Python. Dowi±zania s±
 zaimplementowane jako zbiór modu³ów Pythona: dcop, kdecore, kdesu,
 kdefix (KDE 3.0 i pó¼niejsze), kdeui, kio, kfile, kparts, khtml, kjs,
-kspell, i kdeprint (KDE 2.2.0 i pó¼niejsze). Modu³y odpowiadaj±
+kspell i kdeprint (KDE 2.2.0 i pó¼niejsze). Modu³y odpowiadaj±
 bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
 metody w wymienionych bibliotekach.
 
