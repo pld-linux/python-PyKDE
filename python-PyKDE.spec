@@ -1,4 +1,3 @@
-%include	/usr/lib/rpm/macros.python
 %define		module		PyKDE
 %define		vendor_ver	3.11.1
 %define		vendor_rel	%{nil}
