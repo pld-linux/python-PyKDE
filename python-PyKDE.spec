@@ -24,13 +24,13 @@ BuildRequires:	perl-base
 BuildRequires:	python-devel 
 BuildRequires:	python-PyQt-devel >= 3.11
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip = %{vendor_ver}
+BuildRequires:	sip >= %{vendor_ver}
 %pyrequires_eq	python
 Requires:	OpenGL
-Requires:	python-PyQt = %{vendor_ver}
+Requires:	python-PyQt >= %{vendor_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define          _sipdir         /usr/share/sip
+%define         _sipfilesdir           %{_datadir}/sip
 
 %description
 PyKDE is a set of Python bindings for the KDE desktop environment. The
@@ -60,7 +60,7 @@ metody w wymienionych bibliotekach.
 python configure.py \
         -d %{py_sitedir} \
 	-n %{_libdir} \
-	-v %{_sipdir} \
+	-v %{_sipfilesdir} \
 	-c -j 3
 
 %{__make} \
