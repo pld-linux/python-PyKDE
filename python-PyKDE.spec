@@ -1,7 +1,7 @@
 %include	/usr/lib/rpm/macros.python
 %define		module		PyKDE
-%define		vendor_ver	3.11
-%define		vendor_rel	alpha6
+%define		vendor_ver	3.11.1
+%define		vendor_rel	%{nil}
 %define		fn_ver		%{vendor_ver}%{vendor_rel}
 
 Summary:	Python bindings for KDE
@@ -9,14 +9,15 @@ Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 # Version:	%{vendor_ver}.%{vendor_rel}
 Version:        %{vendor_ver}
-Release:	0.%{vendor_rel}.1
+#Release:	0.%{vendor_rel}.1
+Release:	1
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}rc2.tar.gz
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{version}.tar.gz
 Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
-# Source0-md5:	c38f437f41f396c81bf68ffbc59eff9b
+# Source0-md5:	ad689ed02054ea03b7f4d2d0cd84e6b6
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	perl-base
