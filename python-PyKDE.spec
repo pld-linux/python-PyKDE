@@ -18,16 +18,15 @@ License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
+BuildRequires:	kdelibs-devel >= 3.1.1a
+BuildRequires:	python-PyQt-devel >= 3.5-3
 BuildRequires:	python-devel >= 2.2.2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	python-PyQt-devel >= 3.5-3
-BuildRequires:	kdelibs-devel >= 3.1.1a
 %pyrequires_eq	python
 Requires:	OpenGL
 Requires:	python-PyQt >= 3.5-3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define _prefix /usr/X11R6
 %define          _sipfilesdir         /usr/share/sip
 
 %description
@@ -42,8 +41,8 @@ and methods in these libraries.
 PyKDE jest zbiorem dowi±zañ do KDE dla jêzyka Python. Dowi±zania s±
 zaimplementowane jako zbiór modu³ów Pythona: dcop, kdecore, kdesu,
 kdefix (KDE 3.0 i pó¼niejsze), kdeui, kio, kfile, kparts, khtml, kjs,
-kspell, i kdeprint (KDE 2.2.0 i pó¼niejsze). Modu³y odpowiadaj±
-bibliotekom w pakiecie kdelibs. PyKDE wspieraprawie wszystkie klasy i
+kspell i kdeprint (KDE 2.2.0 i pó¼niejsze). Modu³y odpowiadaj±
+bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
 metody w wymienionych bibliotekach.
 
 %prep
@@ -51,7 +50,7 @@ metody w wymienionych bibliotekach.
 
 %build
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
-cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
+install  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}
 # /tmp/python-PyKDE-3.5.2-root-matkor/usr/lib/python2.2/site-packages/libqtcmodule.so
 
 DESTDIR=$RPM_BUILD_ROOT python build.py \
@@ -61,12 +60,12 @@ DESTDIR=$RPM_BUILD_ROOT python build.py \
 	-c # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
 
 #rm -rf $RPM_BUILD_ROOT
-#export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
+#export LIBRARY_PATH=$RPM_BUILD_ROOT%{py_sitedir}
 #%%{__make} # FIXME make here messes in $RPM_BUILD_ROOT
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
+export LIBRARY_PATH=$RPM_BUILD_ROOT%{py_sitedir}
 
 %{__make} install
 
@@ -79,4 +78,4 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %{py_sitedir}/*.py[co]
-%{py_sitedir}/lib*.so*
+%attr(755,root,root) %{py_sitedir}/lib*.so*
