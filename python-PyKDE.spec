@@ -7,7 +7,7 @@ Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 # Version:	%{vendor_ver}.%{vendor_rel}
-Version:        %{vendor_ver}
+Version:	%{vendor_ver}
 #Release:	0.%{vendor_rel}.1
 Release:	3
 License:	GPL
@@ -30,7 +30,7 @@ Requires:	OpenGL
 Requires:	python-PyQt >= 3.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _sipfilesdir           %{_datadir}/sip
+%define		_sipfilesdir		%{_datadir}/sip
 
 %description
 PyKDE is a set of Python bindings for the KDE desktop environment. The
@@ -58,7 +58,7 @@ metody w wymienionych bibliotekach.
 
 %build
 python configure.py \
-        -d %{py_sitedir} \
+	-d %{py_sitedir} \
 	-n %{_libdir} \
 	-v %{_sipfilesdir} \
 	-c -j 3
