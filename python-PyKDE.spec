@@ -1,4 +1,5 @@
 # TODO: Check if it builds on NEST/AC (blindly merged from RA)
+# - Fix check of libpython.a - We don't need it in PLD
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
