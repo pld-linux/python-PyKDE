@@ -1,0 +1,12 @@
+diff -urN PyKDE-3.7-2/sip/kfileshare.sip PyKDE-3.7-2.patched/sip/kfileshare.sip
+--- PyKDE-3.7-2/sip/kfileshare.sip	Wed Aug  6 09:21:09 2003
++++ PyKDE-3.7-2.patched/sip/kfileshare.sip	Fri Aug  8 18:12:03 2003
+@@ -84,7 +84,7 @@
+ 
+ 
+ %If ( KDE_3_1_2 - KDE_3_1_3 )
+-    static bool          setShared (const QString&, bool, bool);
++    static bool          setShared (const QString&, bool);
+ %End
+ 
+ 
