@@ -1,37 +1,37 @@
-# TODO: Check if it builds on NEST/AC (blindly merged from RA)
-# - Fix check of libpython.a - We don't need it in PLD
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
-%define vendor_ver 3.8
-%define vendor_rel 0
-#%%define fn_ver %{vendor_ver}.%{vendor_rel}
+%define vendor_ver 3.11
+%define vendor_rel alpha4
+%define fn_ver %{vendor_ver}-%{vendor_rel}
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-Version:        %{vendor_ver}.%{vendor_rel}
-Release:	0.2
+# Version:        %{vendor_ver}.%{vendor_rel}
+Version:        %{vendor_ver}
+Release:	0.%{vendor_rel}.1
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}rc2.tar.gz
-Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{version}.tar.gz
-# Source0-md5:	c917602653ff79b318734d51aa875fb5
-Patch0:         %{name}-p2.3-PyQT3.8fix.patch
+# Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{version}.tar.gz
+Source0:	http://beauty.ant.gliwice.pl/bugs/%{module}-%{fn_ver}.tar.gz
+# Source0-md5:	eb2312e1c6d68f90cb127b2d4c9879c3
+
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
-BuildRequires:	kdelibs-devel >= 3.1.1a
-BuildRequires:	python-devel >= 2.2.2
+BuildRequires:	kdelibs-devel >= 3.1
+BuildRequires:	python-devel 
 BuildRequires:	python-static
-BuildRequires:	python-PyQt-devel >= 3.8
+BuildRequires:	python-PyQt-devel >= 3.11
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= %{vendor_ver}
+BuildRequires:	sip = %{vendor_ver}
 %pyrequires_eq	python
 Requires:	OpenGL
-Requires:	python-PyQt >= %{vendor_ver}
+Requires:	python-PyQt = %{vendor_ver}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define          _sipfilesdir         /usr/share/sip
+%define          _sipdir         /usr/share/sip
 
 %description
 PyKDE is a set of Python bindings for the KDE desktop environment. The
@@ -50,25 +50,22 @@ bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
 metody w wymienionych bibliotekach.
 
 %prep
-%setup -q -n %{module}-%{version}
+%setup -q -n %{module}-%{fn_ver}
+#%%patch0 -p1
 
 %build
 KDEDIR=%{_prefix}
-python build.py \
-        -q %{_prefix} \
-        -k %{_prefix} \
-        -i %{_includedir}/qt \
-        -d $RPM_BUILD_ROOT%{py_sitedir} \
-        -t %{_libdir} #%{py_libdir} \
-        -s %{py_sitedir} \
-	-c- # NOTE c+ makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
-            #      Also it may couse failure of linking of huge object files on some archs.
+python configure.py \
+        -d %{py_sitedir} \
+	-v %{_sipdir} \
+	-c -j 3 # 
+        # -t %{py_libdir}/config \
+
 %{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
-%{__make} install
+%{__make} DESTDIR=$RPM_BUILD_ROOT install
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 
