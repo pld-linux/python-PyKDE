@@ -59,7 +59,7 @@ metody w wymienionych bibliotekach.
 %build
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 
-# cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
+cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
 # /tmp/python-PyKDE-3.5.2-root-matkor/usr/lib/python2.2/site-packages/libqtcmodule.so
 
 DESTDIR=$RPM_BUILD_ROOT 
