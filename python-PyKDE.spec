@@ -13,12 +13,14 @@ Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 #Version:	3.5.0.snap%{snap}
 Version:	%{vendor_ver}.%{vendor_rel}
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
 Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
 # Source0-md5:	7252731d6933ddc89ba579738bd903aa
+Patch0:         %{name}-setShared_args_num.patch
+
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
 BuildRequires:	python-devel >= 2.2.2
@@ -52,6 +54,7 @@ metody w wymienionych bibliotekach.
 
 %prep
 %setup -q -n %{module}-%{fn_ver}
+%patch0 -p1
 
 %build
 install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
