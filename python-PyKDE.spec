@@ -9,7 +9,7 @@ Name:		python-%{module}
 # Version:	%{vendor_ver}.%{vendor_rel}
 Version:        %{vendor_ver}
 #Release:	0.%{vendor_rel}.1
-Release:	1
+Release:	3
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
@@ -22,12 +22,12 @@ URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	perl-base
 BuildRequires:	python-devel 
-BuildRequires:	python-PyQt-devel >= 3.11
+BuildRequires:	python-PyQt-devel >= 3.13-2
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= %{vendor_ver}
+#BuildRequires:	sip >= %{vendor_ver}
 %pyrequires_eq	python
 Requires:	OpenGL
-Requires:	python-PyQt >= %{vendor_ver}
+Requires:	python-PyQt >= 3.13
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _sipfilesdir           %{_datadir}/sip
