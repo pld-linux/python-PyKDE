@@ -1,5 +1,3 @@
-# TODO:
-# - Make build install process more PLD conforming.
 
 %include	/usr/lib/rpm/macros.python
 %define		module	PyKDE
@@ -11,7 +9,7 @@ Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 Version:	%{vendor_ver}.%{vendor_rel}
-Release:	0.1
+Release:	1
 License:	GPL
 Group:		Libraries/Python
 # Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}-%{vendor_rel}.tar.gz
@@ -50,12 +48,8 @@ metody w wymienionych bibliotekach.
 
 %prep
 %setup -q -n %{module}-%{fn_ver}
-#%%patch0 -p1
 
 %build
-# install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
-# cp  %{py_sitedir}/libqtcmodule.so $RPM_BUILD_ROOT%{py_sitedir}/
-# DESTDIR=$RPM_BUILD_ROOT 
 KDEDIR=%{_prefix}
 python build.py \
         -q %{_prefix} \
@@ -66,15 +60,12 @@ python build.py \
         -t %{py_libdir} \
         -s %{py_sitedir} \
 	-c+ # makes compilation 5 times faster and eats more memmory than my 256/256 MB Xed machine has :/
-export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
 %{__make} 
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export LIBRARY_PATH=$RPM_BUILD_ROOT/%{py_sitedir}
-
+install -d $RPM_BUILD_ROOT{%{py_sitedir},%{_bindir}}
 %{__make} install
-
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 
