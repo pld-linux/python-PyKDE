@@ -17,6 +17,7 @@ Release:	2
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
+# Source0-md5:	b80d43ab8c6762f985fef274791d174d
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1.1a
 BuildRequires:	python-PyQt-devel >= 3.5-3
