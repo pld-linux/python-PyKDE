@@ -12,7 +12,7 @@ Release:	0.%{snap}.1
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyKDE/PyKDE-snapshot%{snap}.tar.gz
-# Source0-md5:	7e0b2df3d5f9718833238501c3a21e96
+# Source0-md5:	9f03610eff2677668390071de79788d0
 Patch0:		%{name}-debian-4.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
