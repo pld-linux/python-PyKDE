@@ -1,16 +1,17 @@
 %define		module		PyKDE
-%define		vendor_ver	3.11.3
+%define		vendor_ver	4.0.0
 %define		vendor_rel	%{nil}
 %define		fn_ver		%{vendor_ver}%{vendor_rel}
+%define		snap		20050316
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 Version:	%{vendor_ver}
-Release:	5
+Release:	0.%{snap}.1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
+Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyKDE/PyKDE-snapshot%{snap}.tar.gz
 # Source0-md5:	7e0b2df3d5f9718833238501c3a21e96
 Patch0:		%{name}-debian-4.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
@@ -42,8 +43,7 @@ bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
 metody w wymienionych bibliotekach.
 
 %prep
-%setup -q -n %{module}-%{fn_ver}
-%patch0 -p1
+%setup -q -n PyKDE-snapshot%{snap}
 
 # fix copy-pasto from PyQt
 # (-d/-v args were not used, pykdemoddir/pykdesipdir couldn't be overridden)
@@ -81,5 +81,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/*
+%attr(755,root,root) %{_bindir}/*
 %{py_sitedir}/*.py[co]
 %{py_sitedir}/*.so
+%{_datadir}/sip/*
