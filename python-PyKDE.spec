@@ -6,23 +6,18 @@
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-# Version:	%{vendor_ver}.%{vendor_rel}
 Version:	%{vendor_ver}
-#Release:	0.%{vendor_rel}.1
 Release:	5
 License:	GPL
 Group:		Libraries/Python
-# Source0:	http://dl.sourceforge.net/sourceforge/pykde/%{module}-%{vendor_ver}.tar.gz
-# Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{vendor_ver}rc2.tar.gz
-# Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{version}.tar.gz
 Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/%{module}-%{fn_ver}.tar.gz
 # Source0-md5:	7e0b2df3d5f9718833238501c3a21e96
+Patch0:		%{name}-debian-4.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	perl-base
 BuildRequires:	python-devel 
 BuildRequires:	python-PyQt-devel >= 3.13-2
-#BuildRequires:	sip >= %{vendor_ver}
 %pyrequires_eq	python
 Requires:	OpenGL
 Requires:	python-PyQt >= 3.13
@@ -48,6 +43,7 @@ metody w wymienionych bibliotekach.
 
 %prep
 %setup -q -n %{module}-%{fn_ver}
+%patch0 -p1
 
 # fix copy-pasto from PyQt
 # (-d/-v args were not used, pykdemoddir/pykdesipdir couldn't be overridden)
@@ -84,6 +80,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc doc/*
 %{py_sitedir}/*.py[co]
 %{py_sitedir}/*.so
-#%%attr(755,root,root)
