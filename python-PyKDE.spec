@@ -1,24 +1,21 @@
 %define		module		PyKDE
-%define		vendor_ver	4.0.0
-%define		vendor_rel	%{nil}
-%define		fn_ver		%{vendor_ver}%{vendor_rel}
-%define		snap		20050316
+%define		snap		20051013
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-Version:	%{vendor_ver}
+Version:	4.0.0
 Release:	0.%{snap}.1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://www.river-bank.demon.co.uk/download/snapshots/PyKDE/PyKDE-snapshot%{snap}.tar.gz
-# Source0-md5:	9f03610eff2677668390071de79788d0
+Source0:	http://www.river-bank.demon.co.uk/download/PyKDE2/PyKDE-snapshot%{snap}.tar.gz
+# Source0-md5:	2e9d02b0b42b2892e5cf925d1ef7b6f6
 Patch0:		%{name}-debian-4.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
-BuildRequires:	perl-base
-BuildRequires:	python-devel 
+BuildRequires:	python-devel
 BuildRequires:	python-PyQt-devel >= 3.13-2
+BuildRequires:	rpm-pythonprov
 %pyrequires_eq	python
 Requires:	OpenGL
 Requires:	python-PyQt >= 3.13
@@ -44,15 +41,6 @@ metody w wymienionych bibliotekach.
 
 %prep
 %setup -q -n PyKDE-snapshot%{snap}
-
-# fix copy-pasto from PyQt
-# (-d/-v args were not used, pykdemoddir/pykdesipdir couldn't be overridden)
-%{__perl} -pi -e 's/opt_pyqtmoddir/opt_pykdemoddir/;s/opt_pyqtsipdir/opt_pykdesipdir/' \
-	configure.py
-
-for i in $(find -name \*kde330\*);do
-	cp -a $i $(echo $i|sed s/330/332/)
-done
 
 %build
 python configure.py \
