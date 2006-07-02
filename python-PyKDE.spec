@@ -11,7 +11,7 @@ License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyKDE3/%{module}-snapshot%{snap}.tar.gz
 # Source0-md5:	3e6a41f3fc5f759713ba7fd3f70635b0
-Patch0:         %{name}-late_qvariant_include_fix.patch
+Patch0:		%{name}-late_qvariant_include_fix.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
 BuildRequires:	python-PyQt-devel >= 3.13-2
@@ -52,8 +52,8 @@ Files needed to build other bindings for C++ classes that inherit from
 any of the KDE classes.
 
 %description devel -l pl
-Pliki potrzebne do budowania innych dowi±zañ do klas C++ dziedzicz±cych
-z dowolnej klasy KDE.
+Pliki potrzebne do budowania innych dowi±zañ do klas C++
+dziedzicz±cych z dowolnej klasy KDE.
 
 %prep
 %setup -q -n PyKDE-snapshot%{snap}
@@ -64,7 +64,8 @@ python configure.py \
 	-c -j 10 \
 	-d %{py_sitedir} \
 	-n %{_libdir} \
-	-v %{_sipfilesdir}
+	-v %{_sipfilesdir} \
+	-k %{_prefix}
 
 %{__make}
 
