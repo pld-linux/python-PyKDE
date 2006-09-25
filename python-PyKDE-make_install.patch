@@ -1,0 +1,23 @@
+--- PyKDE-3.16.0/configure.py.orig	2006-09-22 10:05:49.000000000 +0200
++++ PyKDE-3.16.0/configure.py	2006-09-25 13:32:52.000000000 +0200
+@@ -762,20 +762,6 @@
+         installs= [("pykdeconfig.py", opt_pykdemoddir), ("contrib/kdepyuic", sipcfg.default_bin_dir)]
+     ).generate()
+ 
+-    if kde_version >= 0x030500:
+-        f = open ("Makefile", "r")
+-        buff = f.read ()
+-        f.close ()
+-        target  = os.path.join (opt_kdelibdir, "kde3", "libkonsolepart.so")
+-        symlink = os.path.join (opt_kdelibdir, "libkonsolepart.so")
+-        buff = buff.replace ("install:\n", "install:\n\tln -sf %s %s\n" % (target, symlink))
+-        buff = buff.replace ("\nclean", "\tldconfig\n\nclean")
+-        f = open ("Makefile.new", "w")
+-        f.write (buff)
+-        f.close ()
+-        os.unlink ("Makefile")
+-        os.rename ("Makefile.new", "Makefile")
+-
+ def fileOpts (fn):
+     try:
+         optfile = open (fn, 'r')
