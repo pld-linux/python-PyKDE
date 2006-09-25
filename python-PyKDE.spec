@@ -1,20 +1,19 @@
 %define		module		PyKDE
-%define		snap		20060422
 
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
-Version:	3.15.2
-Release:	%{snap}.2
+Version:	3.16.0
+Release:	0.1
 Epoch:		1
 License:	GPL
 Group:		Libraries/Python
-Source0:	http://www.riverbankcomputing.com/Downloads/PyKDE3/%{module}-snapshot%{snap}.tar.gz
-# Source0-md5:	3e6a41f3fc5f759713ba7fd3f70635b0
-Patch0:		%{name}-late_qvariant_include_fix.patch
+Source0:	http://www.riverbankcomputing.com/Downloads/PyKDE3/%{module}-%{version}.tar.gz
+# Source0-md5:	92fa0f7d6063dc2aad97d5302975ca76
+Patch0:		%{name}-make_install.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdelibs-devel >= 3.1
-BuildRequires:	python-PyQt-devel >= 3.13-2
+BuildRequires:	python-PyQt-devel >= 3.16
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:4.4.1
 %pyrequires_eq	python-libs
@@ -56,7 +55,7 @@ Pliki potrzebne do budowania innych dowi±zañ do klas C++
 dziedzicz±cych z dowolnej klasy KDE.
 
 %prep
-%setup -q -n PyKDE-snapshot%{snap}
+%setup -q -n PyKDE-%{version}
 %patch0 -p1
 
 %build
@@ -74,6 +73,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+ln -sf $RPM_BUILD_ROOT%{_libdir}/kde3/libkonsolepart.so $RPM_BUILD_ROOT%{_libdir}/libkonsolepart.so
 
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
