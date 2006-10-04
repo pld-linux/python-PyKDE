@@ -13,7 +13,7 @@ Source0:	http://www.riverbankcomputing.com/Downloads/PyKDE3/%{module}-%{version}
 Patch0:		%{name}-make_install.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdebase-common-filemanagement
-BuildRequires:	kdelibs-devel >= 3.1
+BuildRequires:	kdelibs-devel >= 9:3.5.0
 BuildRequires:	python-PyQt-devel >= 3.16
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:4.4.1
