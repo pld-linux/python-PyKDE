@@ -3,7 +3,7 @@ Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 Version:	3.16.0
-Release:	1
+Release:	1.1
 Epoch:		1
 License:	GPL
 Group:		Libraries/Python
@@ -58,6 +58,8 @@ dziedzicz±cych z dowolnej klasy KDE.
 %setup -q -n PyKDE-%{version}
 %patch0 -p1
 
+%{__sed} -i -e '1s,#!.*/bin/env python,#!%{__python},' contrib/kdepyuic
+
 %build
 python configure.py \
 	-c -j 10 \
@@ -73,10 +75,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# FIXME: shouldn't this library be packaged?
 ln -sf kde3/libkonsolepart.so $RPM_BUILD_ROOT%{_libdir}/libkonsolepart.so
 
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
+%py_postclean
 
 install contrib/kdepyuic $RPM_BUILD_ROOT%{_bindir}
 
@@ -86,10 +91,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/*
-%attr(755,root,root) %{_bindir}/*
-%exclude %{_bindir}/kdepyuic
 %{py_sitedir}/*.py[co]
-%{py_sitedir}/*.so
+%attr(755,root,root) %{py_sitedir}/*.so
 
 %files devel
 %defattr(644,root,root,755)
