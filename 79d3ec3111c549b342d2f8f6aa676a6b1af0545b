@@ -1,0 +1,3 @@
+- needs PyQt >= 3.17 to build
+- move kdepyuic to -devel
+- do not package symlink with $RPM_BUILD_ROOT
