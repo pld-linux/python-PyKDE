@@ -4,7 +4,7 @@ Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 Version:	3.16.0
-Release:	0.1
+Release:	1
 Epoch:		1
 License:	GPL
 Group:		Libraries/Python
