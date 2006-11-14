@@ -1,5 +1,4 @@
 %define		module		PyKDE
-
 Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
@@ -14,12 +13,12 @@ Patch0:		%{name}-make_install.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdebase-common-filemanagement
 BuildRequires:	kdelibs-devel >= 9:3.5.0
-BuildRequires:	python-PyQt-devel >= 3.16
+BuildRequires:	python-PyQt-devel >= 3.17
 BuildRequires:	rpm-pythonprov
 BuildRequires:	sip >= 2:4.4.1
 %pyrequires_eq	python-libs
 Requires:	OpenGL
-Requires:	python-PyQt >= 3.13
+Requires:	python-PyQt >= 3.17
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sipfilesdir		%{_datadir}/sip
@@ -74,12 +73,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-ln -sf $RPM_BUILD_ROOT%{_libdir}/kde3/libkonsolepart.so $RPM_BUILD_ROOT%{_libdir}/libkonsolepart.so
+ln -sf kde3/libkonsolepart.so $RPM_BUILD_ROOT%{_libdir}/libkonsolepart.so
 
 %py_comp $RPM_BUILD_ROOT%{py_sitedir}
 %py_ocomp $RPM_BUILD_ROOT%{py_sitedir}
 
-# maybe create -devel package with this?
 install contrib/kdepyuic $RPM_BUILD_ROOT%{_bindir}
 
 %clean
@@ -89,9 +87,11 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc doc/*
 %attr(755,root,root) %{_bindir}/*
+%exclude %{_bindir}/kdepyuic
 %{py_sitedir}/*.py[co]
 %{py_sitedir}/*.so
 
 %files devel
 %defattr(644,root,root,755)
 %{_sipfilesdir}/*
+%attr(755,root,root) %{_bindir}/kdepyuic
