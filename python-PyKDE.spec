@@ -3,13 +3,14 @@ Summary:	Python bindings for KDE
 Summary(pl):	Dowi±zania do KDE dla Pythona
 Name:		python-%{module}
 Version:	3.16.0
-Release:	1.1
+Release:	1.2
 Epoch:		1
 License:	GPL
 Group:		Libraries/Python
 Source0:	http://www.riverbankcomputing.com/Downloads/PyKDE3/%{module}-%{version}.tar.gz
 # Source0-md5:	92fa0f7d6063dc2aad97d5302975ca76
 Patch0:		%{name}-make_install.patch
+Patch1:		%{name}-py2.5.patch
 URL:		http://www.riverbankcomputing.co.uk/pykde/index.php
 BuildRequires:	kdebase-common-filemanagement
 BuildRequires:	kdelibs-devel >= 9:3.5.0
@@ -57,6 +58,7 @@ dziedzicz±cych z dowolnej klasy KDE.
 %prep
 %setup -q -n PyKDE-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %{__sed} -i -e '1s,#!.*/bin/env python,#!%{__python},' contrib/kdepyuic
 
