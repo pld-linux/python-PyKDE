@@ -1,6 +1,6 @@
 %define		module		PyKDE
 Summary:	Python bindings for KDE
-Summary(pl):	Dowi±zania do KDE dla Pythona
+Summary(pl.UTF-8):   DowiÄ…zania do KDE dla Pythona
 Name:		python-%{module}
 Version:	3.16.0
 Release:	1.2
@@ -32,17 +32,17 @@ kjs, kspell and kdeprint (KDE 2.2.0 and later). The modules correspond
 to libraries in the kdelibs package. PyKDE supports nearly all classes
 and methods in these libraries.
 
-%description -l pl
-PyKDE jest zbiorem dowi±zañ do KDE dla jêzyka Python. Dowi±zania s±
-zaimplementowane jako zbiór modu³ów Pythona: dcop, kdecore, kdesu,
-kdefix (KDE 3.0 i pó¼niejsze), kdeui, kio, kfile, kparts, khtml, kjs,
-kspell i kdeprint (KDE 2.2.0 i pó¼niejsze). Modu³y odpowiadaj±
+%description -l pl.UTF-8
+PyKDE jest zbiorem dowiÄ…zaÅ„ do KDE dla jÄ™zyka Python. DowiÄ…zania sÄ…
+zaimplementowane jako zbiÃ³r moduÅ‚Ã³w Pythona: dcop, kdecore, kdesu,
+kdefix (KDE 3.0 i pÃ³Åºniejsze), kdeui, kio, kfile, kparts, khtml, kjs,
+kspell i kdeprint (KDE 2.2.0 i pÃ³Åºniejsze). ModuÅ‚y odpowiadajÄ…
 bibliotekom w pakiecie kdelibs. PyKDE wspiera prawie wszystkie klasy i
 metody w wymienionych bibliotekach.
 
 %package devel
 Summary:	Files needed to build other bindings based on KDE
-Summary(pl):	Pliki potrzebne do budowania innych dowi±zañ bazowanych na KDE
+Summary(pl.UTF-8):   Pliki potrzebne do budowania innych dowiÄ…zaÅ„ bazowanych na KDE
 Group:		Development/Languages/Python
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	python-sip-devel
@@ -51,9 +51,9 @@ Requires:	python-sip-devel
 Files needed to build other bindings for C++ classes that inherit from
 any of the KDE classes.
 
-%description devel -l pl
-Pliki potrzebne do budowania innych dowi±zañ do klas C++
-dziedzicz±cych z dowolnej klasy KDE.
+%description devel -l pl.UTF-8
+Pliki potrzebne do budowania innych dowiÄ…zaÅ„ do klas C++
+dziedziczÄ…cych z dowolnej klasy KDE.
 
 %prep
 %setup -q -n PyKDE-%{version}
