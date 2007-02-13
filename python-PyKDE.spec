@@ -1,6 +1,6 @@
 %define		module		PyKDE
 Summary:	Python bindings for KDE
-Summary(pl.UTF-8):   Dowiązania do KDE dla Pythona
+Summary(pl.UTF-8):	Dowiązania do KDE dla Pythona
 Name:		python-%{module}
 Version:	3.16.0
 Release:	1.2
@@ -42,7 +42,7 @@ metody w wymienionych bibliotekach.
 
 %package devel
 Summary:	Files needed to build other bindings based on KDE
-Summary(pl.UTF-8):   Pliki potrzebne do budowania innych dowiązań bazowanych na KDE
+Summary(pl.UTF-8):	Pliki potrzebne do budowania innych dowiązań bazowanych na KDE
 Group:		Development/Languages/Python
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	python-sip-devel
