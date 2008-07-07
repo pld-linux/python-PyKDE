@@ -3,7 +3,7 @@ Summary:	Python bindings for KDE
 Summary(pl.UTF-8):	Dowiązania do KDE dla Pythona
 Name:		python-%{module}
 Version:	3.16.1
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		Libraries/Python
@@ -17,7 +17,7 @@ BuildRequires:	kdebase-common-filemanagement
 BuildRequires:	kdelibs-devel >= 9:3.5.0
 BuildRequires:	python-PyQt-devel >= 3.17
 BuildRequires:	rpm-pythonprov
-BuildRequires:	sip >= 2:4.4.1
+BuildRequires:	sip >= 2:4.7.3
 %pyrequires_eq	python-libs
 Requires:	OpenGL
 Requires:	python-PyQt >= 3.17
