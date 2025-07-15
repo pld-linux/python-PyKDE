@@ -59,7 +59,7 @@ dziedziczących z dowolnej klasy KDE.
 %prep
 %setup -q -n PyKDE-%{version}
 #% patch0 -p1
-#%patch1 -p1
+#%%patch1 -p1
 
 %{__sed} -i -e '1s,#!.*/bin/env python,#!%{__python},' contrib/kdepyuic
 
